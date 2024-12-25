@@ -222,11 +222,10 @@
             
             const storedPassword = localStorage.getItem(username);
                 if (username == "admin" && password == "admin") {
-                    errorMessage.textContent = 'Вы зашли от имени администратора!'
+                    window.location.href = "admin.html";
                 }
                 else if (storedPassword === password) {
-                    errorMessage.style.color = 'green';
-                    errorMessage.textContent = 'Вход успешен!';
+                    window.location.href = "account.html";
                 } else {
                     errorMessage.textContent = 'Неверный логин или пароль.';
                     errorMessage.style.color = 'red';

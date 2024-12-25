@@ -42,6 +42,14 @@
             border-bottom: none;
         }
 
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 16px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
         .cart-item h3 {
             margin: 0;
         }
@@ -65,7 +73,7 @@
     <div class="navbar">
         <div class="logo" onclick="location.href='index.html'"></div>
         <div class="nav-links">
-            <a href="categories.html">Категории</a>
+       <!-- <a href="categories.html">Категории</a> -->
             <a href="cart.html" class="icon" data-title="Корзина"></a>
             <a href="account.html" class="icon" data-title="Личный кабинет"></a>
         </div>
@@ -101,6 +109,7 @@
                 cartItem.className = 'cart-item';
 
                 cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" />
                     <div>
                         <h3>${item.name}</h3>
                         <p>Цена: ${item.price} ₽</p>
@@ -120,11 +129,11 @@
     <!-- Подвал -->
     <footer>
         <div class="column">
-            <p>Здесь можно разместить любой текст или описание вашей компании.</p>
+            <p>Проект в рамках МДК 04.01, Колледж информационных технологий, 2024 г.</p>
         </div>
         <div class="column links">
             <a href="index.html">Главная страница</a>
-            <a href="categories.html">Категории</a>
+       <!-- <a href="categories.html">Категории</a> -->
             <a href="account.html">Личный кабинет</a>
             <a href="contact.html">Контакты</a>
             <a href="about.html">Об авторах</a>

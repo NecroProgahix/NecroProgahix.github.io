@@ -1,0 +1,134 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Electronics Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#fafafa">
+    <style>
+        .cart-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item h3 {
+            margin: 0;
+        }
+
+        .cart-item p {
+            margin: 0;
+            color: #666;
+        }
+
+        .cart-total {
+            text-align: right;
+            margin-top: 16px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+  </head>
+
+  <body>
+    <!-- Навигационная панель -->
+    <div class="navbar">
+        <div class="logo" onclick="location.href='index.html'"></div>
+        <div class="nav-links">
+            <a href="categories.html">Категории</a>
+            <a href="cart.html" class="icon" data-title="Корзина"></a>
+            <a href="account.html" class="icon" data-title="Личный кабинет"></a>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <div class="cart-container">
+            <h2>Ваша корзина</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total" id="cart-total"></div>
+        </div>
+    </main>
+
+    <script>
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Корзина пуста</p>';
+                cartTotalElement.textContent = '';
+                return;
+            }
+
+            let total = 0;
+
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+
+                cartItem.innerHTML = `
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>Цена: ${item.price} ₽</p>
+                    </div>
+                `;
+
+                cartItemsContainer.appendChild(cartItem);
+                total += item.price;
+            });
+
+            cartTotalElement.textContent = `Итого: ${total} ₽`;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCart);
+    </script>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="column">
+            <p>Здесь можно разместить любой текст или описание вашей компании.</p>
+        </div>
+        <div class="column links">
+            <a href="index.html">Главная страница</a>
+            <a href="categories.html">Категории</a>
+            <a href="account.html">Личный кабинет</a>
+            <a href="contact.html">Контакты</a>
+            <a href="about.html">Об авторах</a>
+        </div>
+    </footer>
+
+</html>

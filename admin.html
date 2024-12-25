@@ -6,129 +6,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Магазин электронных товаров</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Стили -->
-    <style>
-        /* Общие стили */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #333333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            h1 {text-align: center;}
-            p {margin-left: 20px;}
-        }
+</head>
 
-        main {
-            flex: 1;
-        }
-
-        /* Навигационная панель */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #e0f7fa;
-            padding: 10px 20px;
-            padding-right: 10px 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar .logo {
-            width: 40px;
-            height: 40px;
-            background-color: #007acc;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .navbar .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .navbar .nav-links a {
-            text-decoration: none;
-            color: #007acc;
-            font-weight: bold;
-            position: relative;
-        }
-
-        .navbar .nav-links a:hover {
-            text-decoration: underline;
-        }
-
-        .navbar .nav-links .icon {
-            width: 40px;
-            height: 40px;
-            display: inline-block;
-            background-color: #007acc;
-            border-radius: 4px;
-        }
-
-        .navbar .nav-links .icon:hover::after {
-            content: attr(data-title);
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #007acc;
-            color: #ffffff;
-            padding: 5px 10px;
-            border-radius: 4px;
-            white-space: nowrap;
-            font-size: 12px;
-        }
-
-        /* Подвал */
-        footer {
-            background-color: #333333;
-            color: #ffffff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            position: sticky;
-            bottom: 0;
-        }
-
-        footer .column {
-            max-width: 50%;
-        }
-
-        footer .links {
-            display: flex;
-            flex-direction: column;
-        }
-
-        footer .links a {
-            text-decoration: none;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-
-        footer .links a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 600px) {
-            footer {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            footer .column {
-                max-width: 100%;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
-    </head>
 <body>
 
     <!-- Навигационная панель -->
@@ -141,9 +20,121 @@
         </div>
     </div>
 
-    <!-- Основной контент (для примера пустой) -->
     <main>
-        
+        <h1>Admin Panel</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody id="product-list"></tbody>
+        </table>
+
+        <div>
+            <input type="text" id="product-name" placeholder="Name">
+            <input type="text" id="product-price" placeholder="Price">
+            <input type="text" id="product-image" placeholder="Image URL">
+            <button id="add-button">Add</button>
+            <button id="delete-button">Delete</button>
+            <button id="edit-button">Edit</button>
+        </div>
+
+        <script>
+            let products = [
+                { name: "Товар 1", price: "1000 руб.", image: "img/product1.jpg" },
+                { name: "Товар 2", price: "1500 руб.", image: "img/product2.jpg" },
+                { name: "Товар 3", price: "2000 руб.", image: "img/product3.jpg" },
+            ];
+
+            const productList = document.getElementById('product-list');
+            const productNameInput = document.getElementById('product-name');
+            const productPriceInput = document.getElementById('product-price');
+            const productImageInput = document.getElementById('product-image');
+            const addButton = document.getElementById('add-button');
+            const deleteButton = document.getElementById('delete-button');
+            const editButton = document.getElementById('edit-button');
+
+            let editMode = false;
+            let editIndex = null;
+
+            function renderProducts() {
+                productList.innerHTML = '';
+                products.forEach((product, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><input type="checkbox" data-index="${index}"></td>
+                        <td>${product.name}</td>
+                        <td>${product.price}</td>
+                        <td><img src="${product.image}" alt="${product.name}" style="width: 50px;"></td>
+                    `;
+                    productList.appendChild(row);
+                });
+            }
+
+            addButton.addEventListener('click', () => {
+                const name = productNameInput.value.trim();
+                const price = productPriceInput.value.trim();
+                const image = productImageInput.value.trim();
+
+                if (!name || !price || !image) {
+                    alert('Please fill out all fields.');
+                    return;
+                }
+
+                if (editMode) {
+                    products[editIndex] = { name, price, image };
+                    editMode = false;
+                    editIndex = null;
+                    addButton.textContent = 'Add';
+                } else {
+                    products.push({ name, price, image });
+                }
+
+                productNameInput.value = '';
+                roductPriceInput.value = '';
+                productImageInput.value = '';
+
+                renderProducts();
+            });
+
+            deleteButton.addEventListener('click', () => {
+                const checkboxes = document.querySelectorAll('#product-list input[type="checkbox"]:checked');
+                const indicesToDelete = Array.from(checkboxes).map(cb => parseInt(cb.dataset.index));
+
+                if (indicesToDelete.length === 0) {
+                    alert('Please select at least one item to delete.');
+                    return;
+                }
+
+                products = products.filter((_, index) => !indicesToDelete.includes(index));
+                renderProducts();
+            });
+
+            editButton.addEventListener('click', () => {
+                const checkboxes = document.querySelectorAll('#product-list input[type="checkbox"]:checked');
+
+                if (checkboxes.length !== 1) {
+                    alert('Please select exactly one item to edit.');
+                    return;
+                }
+
+                editIndex = parseInt(checkboxes[0].dataset.index);
+                const product = products[editIndex];
+
+                productNameInput.value = product.name;
+                productPriceInput.value = product.price;
+                productImageInput.value = product.image;
+
+                editMode = true;
+                addButton.textContent = 'Save';
+            });
+
+            renderProducts();
+        </script>
     </main>
 
     <!-- Подвал -->

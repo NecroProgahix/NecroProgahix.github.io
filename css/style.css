@@ -260,6 +260,8 @@ body {
 
 main {
   flex: 1;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Навигационная панель */
@@ -337,7 +339,7 @@ footer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  position: sticky;
+  position: bottom;
   bottom: 0;
 }
 
@@ -370,4 +372,57 @@ footer .links a:hover {
       max-width: 100%;
       margin-bottom: 20px;
   }
+}
+
+/* Таблица товаров */
+#product-grid {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Разное */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+table, th, td {
+  border: 1px solid #ddd;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+th {
+  background-color: #f4f4f4;
+}
+input[type="text"] {
+  margin-right: 10px;
+  padding: 5px;
+}
+button {
+  padding: 5px 10px;
+  margin-right: 10px;
+  cursor: pointer;
 }

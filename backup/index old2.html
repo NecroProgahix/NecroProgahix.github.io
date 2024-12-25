@@ -1,0 +1,173 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Electronics Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#fafafa">
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* Навигационная панель */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #e0f7fa;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            width: 40px;
+            height: 40px;
+            background-color: #007acc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #007acc;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .navbar .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .nav-links .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            background-color: #007acc;
+            border-radius: 50%;
+        }
+
+        .navbar .nav-links .icon:hover::after {
+            content: attr(data-title);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #007acc;
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: sticky;
+            bottom: 0;
+        }
+
+        footer .column {
+            max-width: 50%;
+        }
+
+        footer .links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer .links a {
+            text-decoration: none;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        footer .links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            footer .column {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+  </head>
+
+  <body>
+    <!-- Навигационная панель -->
+    <div class="navbar">
+        <div class="logo" onclick="location.href='index.html'"></div>
+        <div class="nav-links">
+            <a href="categories.html">Категории</a>
+            <a href="cart.html" class="icon" data-title="Корзина"></a>
+            <a href="account.html" class="icon" data-title="Личный кабинет"></a>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <h1>Добро пожаловать!</h1>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="column">
+            <p>Здесь можно разместить любой текст или описание вашей компании.</p>
+        </div>
+        <div class="column links">
+            <a href="index.html">Главная страница</a>
+            <a href="categories.html">Категории</a>
+            <a href="account.html">Личный кабинет</a>
+            <a href="contact.html">Контакты</a>
+            <a href="about.html">Об авторах</a>
+        </div>
+    </footer>
+
+</html>

@@ -245,3 +245,129 @@ textarea {
   }
 }
 
+/* Общие стили */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  h1 {text-align: center;}
+  p {margin-left: 20px;}
+}
+
+main {
+  flex: 1;
+}
+
+/* Навигационная панель */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e0f7fa;
+  padding: 10px 20px;
+  padding-right: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  width: 40px;
+  height: 40px;
+  background-color: #007acc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar .nav-links a {
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+  position: relative;
+}
+
+.navbar .nav-links button {
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+  position: relative;
+}
+
+.navbar .nav-links a:hover {
+  text-decoration: underline;
+}
+
+.navbar .nav-links .icon {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  background-color: #007acc;
+  border-radius: 4px;
+}
+
+.navbar .nav-links .icon:hover::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #007acc;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+/* Подвал */
+footer {
+  background-color: #333333;
+  color: #ffffff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: sticky;
+  bottom: 0;
+}
+
+footer .column {
+  max-width: 50%;
+}
+
+footer .links {
+  display: flex;
+  flex-direction: column;
+}
+
+footer .links a {
+  text-decoration: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+footer .links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  footer {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  footer .column {
+      max-width: 100%;
+      margin-bottom: 20px;
+  }
+}

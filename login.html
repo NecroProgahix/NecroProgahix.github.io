@@ -22,7 +22,11 @@
         }
 
         main {
-            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
         }
 
         /* Навигационная панель */
@@ -127,6 +131,26 @@
                 margin-bottom: 20px;
             }
         }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group input {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .form-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
     </head>
 <body>
@@ -141,10 +165,69 @@
         </div>
     </div>
 
-    <!-- Основной контент (для примера пустой) -->
     <main>
-        
+        <h1>Войдите или зарегистрируйтесь</h1>
+        <div class="form-group">
+            <input type="text" id="username" placeholder="Введите логин">
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Введите пароль">
+        </div>
+        <div class="form-group">
+            <button onclick="handleLogin()">Вход</button>
+        </div>
+        <div class="form-group">
+            <button onclick="handleRegister()" id="toggleButton">Регистрация</button>
+        </div>
+        <p class="error-message" id="errorMessage"></p>
     </main>
+
+    <!-- Ни разу в жизни не пользовался JS -->
+    <script>
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = '';
+        let username, password; // изначально const, перевёл в let при переформатировании
+        let activeSession = false;
+        function handleRegister() {
+            username = document.getElementById('username').value.trim();
+            password = document.getElementById('password').value.trim();
+
+            if (!username || !password) {
+                errorMessage.textContent = 'Пожалуйста, заполните все поля.';
+                return;
+            }
+
+            if (localStorage.getItem(username)) {
+                    errorMessage.textContent = 'Логин уже существует. Попробуйте другой.';
+                } else {
+                    localStorage.setItem(username, password);
+                    errorMessage.textContent = 'Регистрация успешна!';
+                    errorMessage.style.color = 'green';
+                }
+        }
+
+        function handleLogin() {
+            username = document.getElementById('username').value.trim(); // переписать. можно сделать один метод, в который будут передаваться разные аргументы в зависимости от кнопки
+            password = document.getElementById('password').value.trim();
+
+            // это тоже переписать
+            // иначе снизят оценку за использование if-else блоков вместо try-catch
+            if (!username || !password) {
+                errorMessage.textContent = 'Пожалуйста, заполните все поля.';
+                return;
+            }
+            
+            const storedPassword = localStorage.getItem(username);
+                if (storedPassword === password) {
+                    errorMessage.textContent = 'Вход успешен!';
+                    errorMessage.style.color = 'green';
+                } else {
+                    errorMessage.textContent = 'Неверный логин или пароль.';
+                    errorMessage.style.color = 'red';
+                }
+            activeSession = true;
+        }
+    </script>
 
     <!-- Подвал -->
     <footer>

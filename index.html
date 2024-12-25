@@ -136,10 +136,18 @@
         <div class="logo" onclick="location.href='index.html'"></div>
         <div class="nav-links">
             <a href="categories.html" class="icon" data-title="Категории товаров"></a>
-            <a href="account.html" class="icon" data-title="Личный кабинет"></a>
+            <button onclick="checkSession()" class="icon" data-title="Личный кабинет"></button>
             <a href="cart.html" class="icon" data-title="Корзина"></a>
         </div>
     </div>
+    <script>
+        function checkSession() {
+            if (activeSession == false) {
+                // добавить открытие login.html
+            }
+            // иначе открыть account.html
+        }
+    </script>
 
     <!-- Основной контент (для примера пустой) -->
     <main>

@@ -221,14 +221,12 @@
             }
             
             const storedPassword = localStorage.getItem(username);
-                if (storedPassword === password) {
+                if (username == "admin" && password == "admin") {
+                    errorMessage.textContent = 'Вы зашли от имени администратора!'
+                }
+                else if (storedPassword === password) {
                     errorMessage.style.color = 'green';
-                    if (username == "admin") {
-                        errorMessage.textContent = 'Вы зашли от имени администратора!'
-                    }
-                    else {
                     errorMessage.textContent = 'Вход успешен!';
-                    }
                 } else {
                     errorMessage.textContent = 'Неверный логин или пароль.';
                     errorMessage.style.color = 'red';

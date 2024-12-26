@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Магазин электронных товаров</title>
+    <title>Личный кабинет</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js"></script>
 </head>
 
 <body>
@@ -14,15 +15,18 @@
     <div class="navbar">
         <div class="logo" onclick="location.href='index.html'"></div>
         <div class="nav-links">
-            <a href="categories.html" class="icon" data-title="Категории товаров"></a>
-            <a href="account.html" class="icon" data-title="Личный кабинет"></a>
-            <a href="cart.html" class="icon" data-title="Корзина"></a>
+            <button onclick="checkSession()" class="icon" data-title="Личный кабинет">
+                <img src="img/user_icon.png" alt="Личный кабинет">
+            </button>
+            <button onclick="cartRedirect()" class="icon" data-title="Корзина">
+                <img src="img/cart_icon.png" alt="Корзина">
+            </button>
         </div>
     </div>
 
-    <!-- Основной контент (для примера пустой) -->
+    <!-- Основной контент -->
     <main>
-        
+        <p id="purchase-count"></p>
     </main>
 
     <!-- Подвал -->
@@ -37,7 +41,5 @@
             <a href="about.html">О проекте</a>
         </div>
     </footer>
-
-        <script src="js/app.js"></script>
 </body>
 </html>

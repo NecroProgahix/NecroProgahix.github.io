@@ -4,152 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Магазин электронных товаров</title>
+    <title>Вход</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Стили -->
+    <script src="js/app.js"></script>
     <style>
-        /* Общие стили */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #333333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            h1 {text-align: center;}
-            p {margin-left: 20px;}
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 80vh;
-        }
-
-        /* Навигационная панель */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #e0f7fa;
-            padding: 10px 20px;
-            padding-right: 10px 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar .logo {
-            width: 40px;
-            height: 40px;
-            background-color: #007acc;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .navbar .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .navbar .nav-links a {
-            text-decoration: none;
-            color: #007acc;
-            font-weight: bold;
-            position: relative;
-        }
-
-        .navbar .nav-links a:hover {
-            text-decoration: underline;
-        }
-
-        .navbar .nav-links .icon {
-            width: 40px;
-            height: 40px;
-            display: inline-block;
-            background-color: #007acc;
-            border-radius: 4px;
-        }
-
-        .navbar .nav-links .icon:hover::after {
-            content: attr(data-title);
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #007acc;
-            color: #ffffff;
-            padding: 5px 10px;
-            border-radius: 4px;
-            white-space: nowrap;
-            font-size: 12px;
-        }
-
-        /* Подвал */
-        footer {
-            background-color: #333333;
-            color: #ffffff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            position: sticky;
-            bottom: 0;
-        }
-
-        footer .column {
-            max-width: 50%;
-        }
-
-        footer .links {
-            display: flex;
-            flex-direction: column;
-        }
-
-        footer .links a {
-            text-decoration: none;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-
-        footer .links a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 600px) {
-            footer {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            footer .column {
-                max-width: 100%;
-                margin-bottom: 20px;
-            }
-        }
-
-        .form-group {
-            margin-bottom: 10px;
-        }
-
-        .form-group input {
-            padding: 8px;
-            font-size: 16px;
-        }
-
-        .form-group button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .error-message {
-            color: red;
-            margin-top: 10px;
+        #username #password #signIn #SignUp {
+            align: centerl
         }
     </style>
     </head>
@@ -159,9 +19,12 @@
     <div class="navbar">
         <div class="logo" onclick="location.href='index.html'"></div>
         <div class="nav-links">
-            <a href="categories.html" class="icon" data-title="Категории товаров"></a>
-            <a href="account.html" class="icon" data-title="Личный кабинет"></a>
-            <a href="cart.html" class="icon" data-title="Корзина"></a>
+            <button onclick="checkSession()" class="icon" data-title="Личный кабинет">
+                <img src="img/user_icon.png" alt="Личный кабинет">
+            </button>
+            <button onclick="cartRedirect()" class="icon" data-title="Корзина">
+                <img src="img/cart_icon.png" alt="Корзина">
+            </button>
         </div>
     </div>
 
@@ -174,10 +37,10 @@
             <input type="password" id="password" placeholder="Введите пароль">
         </div>
         <div class="form-group">
-            <button onclick="handleLogin()">Вход</button>
+            <button onclick="handleLogin()" id="signIn">Вход</button>
         </div>
         <div class="form-group">
-            <button onclick="handleRegister()" id="toggleButton">Регистрация</button>
+            <button onclick="handleRegister()" id="signUp">Регистрация</button>
         </div>
         <p class="error-message" id="errorMessage"></p>
     </main>
@@ -221,7 +84,7 @@
             }
             
             const storedPassword = localStorage.getItem(username);
-                if (username == "admin" && password == "admin") {
+                if (username === "admin" && password == "admin") {
                     window.location.href = "admin.html";
                 }
                 else if (storedPassword === password) {
@@ -231,6 +94,7 @@
                     errorMessage.style.color = 'red';
                 }
             activeSession = true;
+            console.log(activeSession);
             
         }
     </script>
@@ -247,7 +111,5 @@
             <a href="about.html">О проекте</a>
         </div>
     </footer>
-
-        <script src="js/app.js"></script>
 </body>
 </html>

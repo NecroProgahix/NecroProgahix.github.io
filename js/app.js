@@ -1,25 +1,9 @@
 // общие для всех страниц скрипты сюда
 
-let activeSession = localStorage.getItem("activeSession");
-
-function checkSession(callback) {
-    if (activeSession == false) {
-        // добавить открытие login.html
-        console.log(callback);
-        window.location.href = "login.html";
-        if (callback == true) { return true ; } //
-    }
-    // иначе открыть account.html
-}
-
 function cartRedirect() {
-    if (activeSession == false) {
-        window.location.href = "login.html";
-    }
-    else { window.location.href = "cart.html";
-        activeSession = true;
-    }
+    window.location.href = "cart.html";
 }
+
 
 function addToCart(name, price) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];

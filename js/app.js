@@ -12,7 +12,7 @@ function checkSession(callback) {
     // иначе открыть account.html
 }
 
-function addToCart(productName, price) {
+function addToCart(name, price) {
     redirect = checkSession(true);
     if (redirect == false) {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];

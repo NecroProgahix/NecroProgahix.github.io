@@ -123,6 +123,7 @@ th {
 .navbar {
   background-color: #ffffff;
   padding: 10px 20px;
+  padding-right: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -132,9 +133,65 @@ th {
   z-index: 1000;
 }
 
+.navbar .logo {
+  width: 40px;
+  height: 40px;
+  background-color: #007acc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 15px;
+}
+
 .navbar .nav-links a {
   margin-left: 15px;
   font-size: 1em;
+}
+
+.navbar .nav-links button {
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+  position: relative;
+}
+
+.navbar .nav-links a:hover {
+  text-decoration: underline;
+}
+
+.navbar .nav-links .icon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none; /* Убирает границы */
+  background: none; /* Убирает фон */
+  padding: 0; /* Убирает отступы */
+  cursor: pointer;
+}
+
+.navbar .nav-links .icon img {
+  width: 100%; /* Иконка занимает всю область */
+  height: auto; /* Сохраняет пропорции изображения */
+  display: block; /* Убирает лишние отступы */
+}
+
+.navbar .nav-links .icon:hover::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #007acc;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
 }
 
 /* Подвал */

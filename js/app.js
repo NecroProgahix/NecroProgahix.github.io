@@ -12,9 +12,17 @@ function checkSession(callback) {
     // иначе открыть account.html
 }
 
+function cartRedirect() {
+    if (activeSession == false) {
+        window.location.href = "login.html";
+    }
+    else { window.location.href = "cart.html";
+        activeSession = true;
+    }
+}
+
 function addToCart(name, price) {
-    redirect = checkSession(true);
-    if (redirect == false) {
+    if (activeSession == true) {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         cart.push({ name: name, price });
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -47,11 +55,11 @@ function initDB() {
 // для первоначального добавления
 async function addProducts(db) {
     const products = [
-        { name: "Iphone 14", price: "$599", image: "img/200px-IPhone_14.webp" },
-        { name: "MacBook Air", price: "$1,199", image: "img/300px-MacBook_Air_(15-inch,_M3,_2024).webp" },
-        { name: "Ipad Air 4", price: "$599", image: "img/300px-IPad_Air_(5th_generation).webp" },
-        { name: "AirPods Pro 2", price: "$249", image: "img/300px-AirPods_Pro_(2nd_generation).webp" },
-        { name: "XPS 13", price: "$999", image: "img/notebook-xps-13-9345-t-gray-gallery-2.avif" }
+        { name: "Iphone 14", price: "599", image: "img/200px-IPhone_14.webp" },
+        { name: "MacBook Air", price: "1199", image: "img/300px-MacBook_Air_(15-inch,_M3,_2024).webp" },
+        { name: "Ipad Air 4", price: "599", image: "img/300px-IPad_Air_(5th_generation).webp" },
+        { name: "AirPods Pro 2", price: "249", image: "img/300px-AirPods_Pro_(2nd_generation).webp" },
+        { name: "XPS 13", price: "999", image: "img/notebook-xps-13-9345-t-gray-gallery-2.avif" }
     ];
 
     const transaction = db.transaction('products', 'readwrite');

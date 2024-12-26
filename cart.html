@@ -62,8 +62,12 @@
         <div class="logo" onclick="location.href='index.html'"></div>
         <div class="nav-links">
        <!-- <a href="categories.html">Категории</a> -->
-            <a href="cart.html" class="icon" data-title="Корзина"></a>
-            <a href="account.html" class="icon" data-title="Личный кабинет"></a>
+        <button onclick="checkSession()" class="icon" data-title="Личный кабинет">
+            <img src="img/user_icon.png" alt="Личный кабинет">
+        </button>
+        <button onclick="cartRedirect()" class="icon" data-title="Корзина">
+            <img src="img/cart_icon.png" alt="Корзина">
+    </button>
         </div>
     </div>
 

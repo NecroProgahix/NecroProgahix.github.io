@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Магазин электронных товаров</title>
+    <title>Главная</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js"></script>
 </head>
 
 <body>
@@ -23,9 +24,10 @@
     <!-- Основной контент -->
     <main>
         <div>
-            <img src="img/sale1.jpg" alt="Акция 1">
+            <img id="promo" src="img/promo.png" alt="Акция 1">
         </div>
 
+        <h1>Популярные</h1>
         <!-- Сетка товаров -->
         <template id="product-template">
             <div class="product-card">
@@ -41,32 +43,47 @@
 
     <script>
         // загрузка товаров на страницу
-        let products = [
-            { name: "Товар 1", price: "1000 руб.", image: "img/product1.jpg" },
-            { name: "Товар 2", price: "1500 руб.", image: "img/product2.jpg" },
-            { name: "Товар 3", price: "2000 руб.", image: "img/product3.jpg" },
-        ];
 
-        const template = document.getElementById('product-template');
-        const productsContainer = document.getElementById('product-grid');
-    
-        if (!template || !productsContainer) {
-            console.error('Шаблон или контейнер не найден!');
+        function exportProducts(db) {
+            return new Promise((resolve, reject) => {
+            const transaction = db.transaction('products', 'readonly');
+            const store = transaction.objectStore('products');
+
+            const request = store.getAll();
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+            });
         }
 
-        products.forEach(product => {
-            const clone = template.content.cloneNode(true);
-            clone.querySelector('img').src = product.image;
-            clone.querySelector('img').alt = product.name;
-            clone.querySelector('.name').textContent = product.name;
-            clone.querySelector('.description').textContent = product.description || '';
-            clone.querySelector('.price').textContent = product.price;
+        function renderProducts(products) {
+            const template = document.getElementById('product-template');
+            const productsContainer = document.getElementById('product-grid');
 
-            const button = clone.querySelector('button');
-            button.setAttribute('onclick', `addToCart('${product.name}', '${product.price}')`);
+            productsContainer.innerHTML = '';
 
-            productsContainer.appendChild(clone);
-        });
+            products.forEach(product => {
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('img').src = product.image;
+                clone.querySelector('img').alt = product.name;
+                clone.querySelector('.name').textContent = product.name;
+                clone.querySelector('.price').textContent = product.price;
+                productsContainer.appendChild(clone);
+            });
+        }
+
+        (async () => {
+            const db = await initDB();
+
+            db.onversionchange = () => {
+                db.close();
+                alert("Обновление базы данных. Пожалуйста, перезагрузите страницу.");
+            };
+
+            addProducts(db); // Добавить продукты, если база данных новая
+
+            const products = await exportProducts(db);
+            renderProducts(products); // Загрузить продукты на страницу
+        })();
     </script>
 
     <!-- Подвал -->
@@ -81,7 +98,5 @@
             <a href="about.html">О проекте</a>
         </div>
     </footer>
-
-    <script src="js/app.js"></script>
 </body>
 </html>

@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Магазин электронных товаров</title>
+    <title>Панель администратора</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js"></script>
 </head>
 
 <body>
@@ -38,17 +39,18 @@
             <input type="text" id="product-name" placeholder="Наименование">
             <input type="text" id="product-price" placeholder="Цена">
             <input type="text" id="product-image" placeholder="Ссылка на изображение">
-            <button id="add-button">Добавить</button>
-            <button id="delete-button">Удалить</button>
-            <button id="edit-button">Редактировать</button>
+            <button class="ctrlBtn" id="add-button">Добавить</button>
+            <button class="ctrlBtn" id="delete-button">Удалить</button>
+            <button class="ctrlBtn" id="edit-button">Редактировать</button>
         </div>
 
         <script>
-            let products = [
-                { name: "Товар 1", price: "1000 руб.", image: "img/product1.jpg" },
-                { name: "Товар 2", price: "1500 руб.", image: "img/product2.jpg" },
-                { name: "Товар 3", price: "2000 руб.", image: "img/product3.jpg" },
-            ];
+            /* let products = [
+                { name: "Iphone 14", price: "$599", image: "img/200px-IPhone_14.webp" },
+                { name: "MacBook Air", price: "$1,200", image: "img/300px-MacBook_Air_(15-inch,_M3,_2024).webp" },
+                { name: "Ipad Air 4", price: "$599", image: "img/300px-IPad_Air_(5th_generation).webp" },
+                { name: "AirPods Pro 2", price: "$249", image: "img/300px-AirPods_Pro_(2nd_generation).webp"}
+            ]; */
 
             const productList = document.getElementById('product-list');
             const productNameInput = document.getElementById('product-name');
@@ -149,7 +151,5 @@
             <a href="about.html">О проекте</a>
         </div>
     </footer>
-
-        <script src="js/app.js"></script>
 </body>
 </html>

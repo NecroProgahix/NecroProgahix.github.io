@@ -1,6 +1,6 @@
 // общие для всех страниц скрипты сюда
 
-let activeSession = false;
+let activeSession = localStorage.getItem("activeSession");
 
 function checkSession(callback) {
     if (activeSession == false) {
@@ -22,12 +22,11 @@ function cartRedirect() {
 }
 
 function addToCart(name, price) {
-    if (activeSession == true) {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push({ name: name, price });
-        localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`${productName} добавлен в корзину.`);
-    }
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ name: name, price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${name} добавлен в корзину.`);
+    
 }
 
 const dbName = 'ProductsDB'; // тяжёлая игрушка

@@ -9,7 +9,7 @@
     <script src="js/app.js"></script>
     <style>
         #username #password #signIn #SignUp {
-            align: centerl
+            align: center;
         }
     </style>
     </head>
@@ -93,7 +93,7 @@
                     errorMessage.textContent = 'Неверный логин или пароль.';
                     errorMessage.style.color = 'red';
                 }
-            activeSession = true;
+            localStorage.setItem("activeSession", true)
             console.log(activeSession);
             
         }

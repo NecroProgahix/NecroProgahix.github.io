@@ -97,15 +97,6 @@
             renderProducts(products); // Загрузить продукты на страницу
         })();
 
-        function addToCart(name, price) {
-    redirect = checkSession(true);
-    if (redirect == false) {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push({ name: name, price });
-        localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`${productName} добавлен в корзину.`);
-    }
-}
     </script>
 
     <!-- Подвал -->
